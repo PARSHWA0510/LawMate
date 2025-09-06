@@ -1,0 +1,89 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Backup files
+*.backup
+*.bak
+*.tmp
+
+# Temporary files
+tmp/
+temp/
+
+# Local development files
+.local
+local/
+
+# Documentation build
+docs/_build/
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Build artifacts
+build/
+dist/
+out/
+
+# Dependencies (will be handled by subdirectory .gitignore files)
+# node_modules/
+# .dart_tool/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads
+uploads/
+public/uploads/
+
+# Docker
+.dockerignore
+Dockerfile.dev
+
+# PM2
+ecosystem.config.js
+
+# Lock files (keep package-lock.json but ignore others)
+yarn.lock
+pnpm-lock.yaml
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# Hive
+*.hive
+*.hive.lock
