@@ -1,70 +1,77 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'app_colors.dart';
+import '../utils/math_utils.dart';
 
 class AppTheme {
-  // Colors
-  static const Color primaryColor = Color(0xFF2E7D32);
-  static const Color secondaryColor = Color(0xFF4CAF50);
-  static const Color accentColor = Color(0xFF81C784);
-  static const Color errorColor = Color(0xFFD32F2F);
-  static const Color warningColor = Color(0xFFFF9800);
-  static const Color successColor = Color(0xFF4CAF50);
-  static const Color infoColor = Color(0xFF2196F3);
-
-  // Text Colors
-  static const Color textPrimary = Color(0xFF212121);
-  static const Color textSecondary = Color(0xFF757575);
-  static const Color textHint = Color(0xFFBDBDBD);
-
-  // Background Colors
-  static const Color backgroundPrimary = Color(0xFFFFFFFF);
-  static const Color backgroundSecondary = Color(0xFFF5F5F5);
-  static const Color surfaceColor = Color(0xFFFFFFFF);
-
-  // Border Colors
-  static const Color borderColor = Color(0xFFE0E0E0);
-  static const Color borderFocused = primaryColor;
-
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryColor,
-        brightness: Brightness.light,
-        primary: primaryColor,
-        secondary: secondaryColor,
-        error: errorColor,
-        surface: surfaceColor,
+      brightness: Brightness.light,
+      colorScheme: const ColorScheme.light(
+        primary: AppColors.primary,
+        onPrimary: AppColors.textOnPrimary,
+        secondary: AppColors.secondary,
+        onSecondary: AppColors.textOnSecondary,
+        tertiary: AppColors.accent,
+        onTertiary: AppColors.white,
+        error: AppColors.error,
+        onError: AppColors.white,
+        surface: AppColors.surface,
+        onSurface: AppColors.textPrimary,
+        surfaceContainerHighest: AppColors.surfaceVariant,
+        onSurfaceVariant: AppColors.textSecondary,
+        outline: AppColors.border,
+        shadow: AppColors.shadow,
       ),
 
       // AppBar Theme
       appBarTheme: AppBarTheme(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.textOnPrimary,
         titleTextStyle: TextStyle(
-          fontSize: 20.sp,
+          fontSize: MathUtilities.getSize(20),
           fontWeight: FontWeight.w600,
-          color: Colors.white,
+          color: AppColors.textOnPrimary,
         ),
       ),
 
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
-            vertical: 16.h,
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.textOnPrimary,
+          elevation: 2,
+          shadowColor: AppColors.shadow,
+          padding: MathUtilities.getResponsivePadding(
+            horizontal: 24,
+            vertical: 16,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.r),
+            borderRadius: MathUtilities.getResponsiveBorderRadius(12),
           ),
           textStyle: TextStyle(
-            fontSize: 16.sp,
+            fontSize: MathUtilities.getSize(16),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      // Outlined Button Theme
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primary,
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          padding: MathUtilities.getResponsivePadding(
+            horizontal: 24,
+            vertical: 16,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          ),
+          textStyle: TextStyle(
+            fontSize: MathUtilities.getSize(16),
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -73,13 +80,16 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: primaryColor,
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.w,
-            vertical: 8.h,
+          foregroundColor: AppColors.primary,
+          padding: MathUtilities.getResponsivePadding(
+            horizontal: 16,
+            vertical: 8,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: MathUtilities.getResponsiveBorderRadius(8),
           ),
           textStyle: TextStyle(
-            fontSize: 14.sp,
+            fontSize: MathUtilities.getSize(14),
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -88,127 +98,375 @@ class AppTheme {
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: backgroundSecondary,
+        fillColor: AppColors.surface,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: borderColor),
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.border),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: borderColor),
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.border),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: borderFocused, width: 2),
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: errorColor),
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.error),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: const BorderSide(color: errorColor, width: 2),
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 16.h,
+        contentPadding: MathUtilities.getResponsivePadding(
+          horizontal: 16,
+          vertical: 16,
         ),
         labelStyle: TextStyle(
-          fontSize: 16.sp,
-          color: textSecondary,
+          fontSize: MathUtilities.getSize(16),
+          color: AppColors.textSecondary,
         ),
         hintStyle: TextStyle(
-          fontSize: 16.sp,
-          color: textHint,
+          fontSize: MathUtilities.getSize(16),
+          color: AppColors.textTertiary,
         ),
       ),
 
       // Card Theme
       cardTheme: CardTheme(
         elevation: 2,
+        shadowColor: AppColors.shadow,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
         ),
-        color: surfaceColor,
+        color: AppColors.surface,
       ),
 
       // Text Theme
       textTheme: TextTheme(
         displayLarge: TextStyle(
-          fontSize: 32.sp,
+          fontSize: MathUtilities.getSize(32),
           fontWeight: FontWeight.bold,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         displayMedium: TextStyle(
-          fontSize: 28.sp,
+          fontSize: MathUtilities.getSize(28),
           fontWeight: FontWeight.bold,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         displaySmall: TextStyle(
-          fontSize: 24.sp,
+          fontSize: MathUtilities.getSize(24),
           fontWeight: FontWeight.bold,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         headlineLarge: TextStyle(
-          fontSize: 22.sp,
+          fontSize: MathUtilities.getSize(22),
           fontWeight: FontWeight.w600,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         headlineMedium: TextStyle(
-          fontSize: 20.sp,
+          fontSize: MathUtilities.getSize(20),
           fontWeight: FontWeight.w600,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         headlineSmall: TextStyle(
-          fontSize: 18.sp,
+          fontSize: MathUtilities.getSize(18),
           fontWeight: FontWeight.w600,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         titleLarge: TextStyle(
-          fontSize: 16.sp,
+          fontSize: MathUtilities.getSize(16),
           fontWeight: FontWeight.w600,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         titleMedium: TextStyle(
-          fontSize: 14.sp,
+          fontSize: MathUtilities.getSize(14),
           fontWeight: FontWeight.w500,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         titleSmall: TextStyle(
-          fontSize: 12.sp,
+          fontSize: MathUtilities.getSize(12),
           fontWeight: FontWeight.w500,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         bodyLarge: TextStyle(
-          fontSize: 16.sp,
+          fontSize: MathUtilities.getSize(16),
           fontWeight: FontWeight.normal,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         bodyMedium: TextStyle(
-          fontSize: 14.sp,
+          fontSize: MathUtilities.getSize(14),
           fontWeight: FontWeight.normal,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         bodySmall: TextStyle(
-          fontSize: 12.sp,
+          fontSize: MathUtilities.getSize(12),
           fontWeight: FontWeight.normal,
-          color: textSecondary,
+          color: AppColors.textSecondary,
         ),
         labelLarge: TextStyle(
-          fontSize: 14.sp,
+          fontSize: MathUtilities.getSize(14),
           fontWeight: FontWeight.w500,
-          color: textPrimary,
+          color: AppColors.textPrimary,
         ),
         labelMedium: TextStyle(
-          fontSize: 12.sp,
+          fontSize: MathUtilities.getSize(12),
           fontWeight: FontWeight.w500,
-          color: textSecondary,
+          color: AppColors.textSecondary,
         ),
         labelSmall: TextStyle(
-          fontSize: 10.sp,
+          fontSize: MathUtilities.getSize(10),
           fontWeight: FontWeight.w500,
-          color: textHint,
+          color: AppColors.textTertiary,
         ),
+      ),
+
+      // Icon Theme
+      iconTheme: const IconThemeData(
+        color: AppColors.textSecondary,
+        size: 24,
+      ),
+
+      // Divider Theme
+      dividerTheme: const DividerThemeData(
+        color: AppColors.border,
+        thickness: 1,
+        space: 1,
+      ),
+    );
+  }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      brightness: Brightness.dark,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.primaryLight,
+        onPrimary: AppColors.textPrimary,
+        secondary: AppColors.secondaryLight,
+        onSecondary: AppColors.textPrimary,
+        tertiary: AppColors.accentLight,
+        onTertiary: AppColors.textPrimary,
+        error: AppColors.error,
+        onError: AppColors.white,
+        surface: AppColors.darkSurface,
+        onSurface: AppColors.darkTextPrimary,
+        surfaceContainerHighest: AppColors.darkSurfaceVariant,
+        onSurfaceVariant: AppColors.darkTextSecondary,
+        outline: AppColors.darkBorder,
+        shadow: AppColors.darkShadow,
+      ),
+
+      // AppBar Theme
+      appBarTheme: AppBarTheme(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: AppColors.darkSurface,
+        foregroundColor: AppColors.darkTextPrimary,
+        titleTextStyle: TextStyle(
+          fontSize: MathUtilities.getSize(20),
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkTextPrimary,
+        ),
+      ),
+
+      // Elevated Button Theme
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primaryLight,
+          foregroundColor: AppColors.textPrimary,
+          elevation: 2,
+          shadowColor: AppColors.darkShadow,
+          padding: MathUtilities.getResponsivePadding(
+            horizontal: 24,
+            vertical: 16,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          ),
+          textStyle: TextStyle(
+            fontSize: MathUtilities.getSize(16),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      // Outlined Button Theme
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.primaryLight,
+          side: const BorderSide(color: AppColors.primaryLight, width: 1.5),
+          padding: MathUtilities.getResponsivePadding(
+            horizontal: 24,
+            vertical: 16,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          ),
+          textStyle: TextStyle(
+            fontSize: MathUtilities.getSize(16),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      // Text Button Theme
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.primaryLight,
+          padding: MathUtilities.getResponsivePadding(
+            horizontal: 16,
+            vertical: 8,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: MathUtilities.getResponsiveBorderRadius(8),
+          ),
+          textStyle: TextStyle(
+            fontSize: MathUtilities.getSize(14),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+
+      // Input Decoration Theme
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.darkSurfaceVariant,
+        border: OutlineInputBorder(
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.darkBorder),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.darkBorder),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.primaryLight, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.error),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+          borderSide: const BorderSide(color: AppColors.error, width: 2),
+        ),
+        contentPadding: MathUtilities.getResponsivePadding(
+          horizontal: 16,
+          vertical: 16,
+        ),
+        labelStyle: TextStyle(
+          fontSize: MathUtilities.getSize(16),
+          color: AppColors.darkTextSecondary,
+        ),
+        hintStyle: TextStyle(
+          fontSize: MathUtilities.getSize(16),
+          color: AppColors.darkTextTertiary,
+        ),
+      ),
+
+      // Card Theme
+      cardTheme: CardTheme(
+        elevation: 2,
+        shadowColor: AppColors.darkShadow,
+        shape: RoundedRectangleBorder(
+          borderRadius: MathUtilities.getResponsiveBorderRadius(12),
+        ),
+        color: AppColors.darkSurface,
+      ),
+
+      // Text Theme
+      textTheme: TextTheme(
+        displayLarge: TextStyle(
+          fontSize: MathUtilities.getSize(32),
+          fontWeight: FontWeight.bold,
+          color: AppColors.darkTextPrimary,
+        ),
+        displayMedium: TextStyle(
+          fontSize: MathUtilities.getSize(28),
+          fontWeight: FontWeight.bold,
+          color: AppColors.darkTextPrimary,
+        ),
+        displaySmall: TextStyle(
+          fontSize: MathUtilities.getSize(24),
+          fontWeight: FontWeight.bold,
+          color: AppColors.darkTextPrimary,
+        ),
+        headlineLarge: TextStyle(
+          fontSize: MathUtilities.getSize(22),
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkTextPrimary,
+        ),
+        headlineMedium: TextStyle(
+          fontSize: MathUtilities.getSize(20),
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkTextPrimary,
+        ),
+        headlineSmall: TextStyle(
+          fontSize: MathUtilities.getSize(18),
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkTextPrimary,
+        ),
+        titleLarge: TextStyle(
+          fontSize: MathUtilities.getSize(16),
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkTextPrimary,
+        ),
+        titleMedium: TextStyle(
+          fontSize: MathUtilities.getSize(14),
+          fontWeight: FontWeight.w500,
+          color: AppColors.darkTextPrimary,
+        ),
+        titleSmall: TextStyle(
+          fontSize: MathUtilities.getSize(12),
+          fontWeight: FontWeight.w500,
+          color: AppColors.darkTextPrimary,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: MathUtilities.getSize(16),
+          fontWeight: FontWeight.normal,
+          color: AppColors.darkTextPrimary,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: MathUtilities.getSize(14),
+          fontWeight: FontWeight.normal,
+          color: AppColors.darkTextPrimary,
+        ),
+        bodySmall: TextStyle(
+          fontSize: MathUtilities.getSize(12),
+          fontWeight: FontWeight.normal,
+          color: AppColors.darkTextSecondary,
+        ),
+        labelLarge: TextStyle(
+          fontSize: MathUtilities.getSize(14),
+          fontWeight: FontWeight.w500,
+          color: AppColors.darkTextPrimary,
+        ),
+        labelMedium: TextStyle(
+          fontSize: MathUtilities.getSize(12),
+          fontWeight: FontWeight.w500,
+          color: AppColors.darkTextSecondary,
+        ),
+        labelSmall: TextStyle(
+          fontSize: MathUtilities.getSize(10),
+          fontWeight: FontWeight.w500,
+          color: AppColors.darkTextTertiary,
+        ),
+      ),
+
+      // Icon Theme
+      iconTheme: const IconThemeData(
+        color: AppColors.darkTextSecondary,
+        size: 24,
+      ),
+
+      // Divider Theme
+      dividerTheme: const DividerThemeData(
+        color: AppColors.darkBorder,
+        thickness: 1,
+        space: 1,
       ),
     );
   }

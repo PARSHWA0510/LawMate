@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_strings.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/math_utils.dart';
 import '../../bloc/auth_bloc.dart';
 import '../../bloc/auth_event.dart';
 
@@ -12,6 +14,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.appTitle),
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.person),
@@ -27,39 +31,36 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.gavel,
-              size: 80,
-              color: Color(0xFF2E7D32),
+              size: MathUtilities.getSize(80),
+              color: AppColors.primary,
             ),
-            SizedBox(height: 24),
+            SizedBox(height: MathUtilities.getSize(24)),
             Text(
               AppStrings.appTitle,
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF2E7D32),
-              ),
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
+                  ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: MathUtilities.getSize(8)),
             Text(
               AppStrings.appSubtitle,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
             ),
-            SizedBox(height: 32),
+            SizedBox(height: MathUtilities.getSize(32)),
             Text(
               'Welcome to LawMate!',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ],
         ),

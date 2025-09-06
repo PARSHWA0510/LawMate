@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#2E7D32"/>
+  
+  <!-- Scale Icon -->
+  <g transform="translate(128, 128)">
+    <!-- Scale Base -->
+    <rect x="80" y="200" width="96" height="8" rx="4" fill="#FFFFFF"/>
+    
+    <!-- Left Scale -->
+    <rect x="40" y="120" width="8" height="80" rx="4" fill="#FFFFFF"/>
+    <rect x="40" y="120" width="80" height="8" rx="4" fill="#FFFFFF"/>
+    
+    <!-- Right Scale -->
+    <rect x="264" y="120" width="8" height="80" rx="4" fill="#FFFFFF"/>
+    <rect x="192" y="120" width="80" height="8" rx="4" fill="#FFFFFF"/>
+    
+    <!-- Scale Pans -->
+    <ellipse cx="80" cy="100" rx="32" ry="8" fill="#FFFFFF"/>
+    <ellipse cx="208" cy="100" rx="32" ry="8" fill="#FFFFFF"/>
+    
+    <!-- Scale Chains -->
+    <rect x="72" y="100" width="4" height="20" fill="#FFFFFF"/>
+    <rect x="84" y="100" width="4" height="20" fill="#FFFFFF"/>
+    <rect x="200" y="100" width="4" height="20" fill="#FFFFFF"/>
+    <rect x="212" y="100" width="4" height="20" fill="#FFFFFF"/>
+    
+    <!-- Book Icon in Left Pan -->
+    <rect x="60" y="80" width="40" height="30" rx="4" fill="#2E7D32"/>
+    <rect x="65" y="85" width="30" height="2" fill="#FFFFFF"/>
+    <rect x="65" y="90" width="30" height="2" fill="#FFFFFF"/>
+    <rect x="65" y="95" width="20" height="2" fill="#FFFFFF"/>
+    
+    <!-- Gavel Icon in Right Pan -->
+    <rect x="190" y="85" width="36" height="4" rx="2" fill="#2E7D32"/>
+    <rect x="200" y="75" width="4" height="20" fill="#2E7D32"/>
+    <rect x="195" y="75" width="14" height="4" rx="2" fill="#2E7D32"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="256" y="400" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="48" font-weight="bold">LM</text>
+</svg>

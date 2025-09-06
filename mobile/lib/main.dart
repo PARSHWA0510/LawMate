@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/di/injection.dart';
 import 'core/theme/app_theme.dart';
-import 'core/constants/app_strings.dart';
+import 'core/constants/app_constants.dart';
+import 'core/navigation/app_router.dart';
+import 'core/utils/math_utils.dart';
 import 'features/auth/bloc/auth_bloc.dart';
 import 'features/auth/bloc/auth_event.dart';
 import 'features/auth/bloc/auth_state.dart';
-import 'features/auth/presentation/pages/login_page.dart';
-import 'features/auth/presentation/pages/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,18 +25,27 @@ class LawMateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812), // iPhone X design size
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          title: AppStrings.appTitle,
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          home: const AuthWrapper(),
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (context) =>
+              GetIt.instance<AuthBloc>()..add(const AuthStatusChecked()),
+        ),
+        // Add other BLoC providers here
+      ],
+      child: MaterialApp.router(
+        title: AppConstants.appName,
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.system,
+        routerConfig: AppRouter.router,
+        builder: (context, child) {
+          // Set the context for MathUtilities
+          MathUtilities.setContext(context);
+          return child!;
+        },
+      ),
     );
   }
 }
@@ -47,26 +55,22 @@ class AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          GetIt.instance<AuthBloc>()..add(const AuthStatusChecked()),
-      child: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
-          if (state is AuthLoading) {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        if (state is AuthLoading) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
 
-          if (state is AuthAuthenticated) {
-            return const HomePage();
-          }
+        if (state is AuthAuthenticated) {
+          return const AuthWrapper();
+        }
 
-          return const LoginPage();
-        },
-      ),
+        return const AuthWrapper();
+      },
     );
   }
 }
